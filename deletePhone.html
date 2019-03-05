@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Phone List WebApp</title>
+        <script src="src/ctrl/initialize.js"></script>
+        <script src="src/model/Phone.js"></script>
+        <script src="src/view/deletePhone.js"></script>
+        <script>
+            window.addEventListener("load", pl.view.deletePhone.setupUserInterface);
+        </script>
+    </head>
+    <body>
+        <h1>Phone List: Delete a phone record</h1>
+        <form id="DeletePhone">
+            <p>
+                <label>Select phone: 
+                    <select name="selectPhone"><option value=""> --- </option></select>
+                </label>
+            </p>
+            <p><button type="button" name="commit">Delete</button></p>
+        </form>
+        <nav><a href="index.html">Back to main menu</a></nav>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Phone List WebApp</title>
+        <script src="src/ctrl/initialize.js"></script>
+        <script src="src/model/Phone.js"></script>
+    </head>
+    <body>
+        <h1>Phone List</h1>
+        <h2>Manage a list of</h2>
+        <p>This app supports the following operations:</p>
+        <menu>
+            <li><a href="listPhones.html"><button type="button">List all phones</button></a></li>
+            <li><a href="createPhone.html"><button type="button">Add a new phone</button></a></li>
+            <li><a href="updatePhone.html"><button type="button">Update a phone</button></a></li>
+            <li><a href="deletePhone.html"><button type="button">Delete a phone</button></a></li>
+            <li><button type="button" onclick="Phone.clearData()">Clear database</button></li>
+            <li><button type="button" onclick="Phone.createTestData()">Create test data</button></li>
+        </menu>
+    </body>
+</html>

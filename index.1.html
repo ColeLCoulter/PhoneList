@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Phone List WebApp</title>
+        <script src="src/ctrl/initialize.js"></script>
+        <script src="src/model/Phone.js"></script>
+        <script src="src/view/listPhones.js"></script>
+        <script src="src/view/createPhone.js"></script>
+        <script src="src/view/updatePhone.js"></script>
+        <script src="src/view/deletePhone.js"></script>
+        <script>
+            window.addEventListener( "load", pl.view.listPhones.setupUserInterface);
+        </script>
+        <script>
+            window.addEventListener("load", pl.view.createPhone.setupUserInterface);
+        </script>
+        <script>
+            window.addEventListener("load", pl.view.updatePhone.setupUserInterface);
+        </script>
+        <script>
+            window.addEventListener("load", pl.view.deletePhone.setupUserInterface);
+        </script>
+        <style>
+            * {box-sizing: border-box}
+            body {font-family: "Lato", sans-serif;}
+            
+            /* Style the tab */
+            .tab {
+                float: left;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+                width: 15%;
+                height: 300px;
+            }
+            
+            /* Style the buttons inside the tab */
+            .tab button {
+                display: block;
+                background-color: inherit;
+                color: black;
+                padding: 22px 16px;
+                width: 100%;
+                border: none;
+                outline: none;
+                text-align: left;
+                cursor: pointer;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+            
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+            
+            /* Create an active/current "tab button" class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+            
+            /* Style the tab content */
+            .tabcontent {
+                float: left;
+                padding: 0px 12px;
+                border: 1px solid #ccc;
+                width: 70%;
+                border-left: none;
+                height: 300px;
+            }
+
+            .menu {
+                float: left;
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Phone List</h1>
+        <h2>Manage a List of Phones</h2>
+        <p>This app supports the following operations:</p>
+
+        <div class="tab">
+            <button class="tablinks" onclick="openForm(event, 'List')" id="defaultOpen">List all phones</button>
+            <button class="tablinks" onclick="openForm(event, 'Add')">Add a new phone</button>
+            <button class="tablinks" onclick="openForm(event, 'Update')">Update a phone</button>
+            <button class="tablinks" onclick="openForm(event, 'Delete')">Delete a phone</button>
+        </div>
+          
+        <div id="List" class="tabcontent" style="overflow:auto">
+            <h1>Phone List: List all phones</h1>
+            <table id="ListPhones">
+                <thead><tr><th>IMEI</th><th>Manufacturer</th><th>Model</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+          
+        <div id="Add" class="tabcontent">
+            <h1>Phone List: Create a new phone record</h1>
+            <form id="AddPhone">
+                <p><label>IMEI: <input name="imei" /></label></p>
+                <p><label>Manufacturer: <input name="manufacturer" /></label></p>
+                <p><label>Model: <input name="model" /></label></p>
+                <p><button type="button" name="commit">Save</button></p>
+            </form> 
+        </div>
+          
+        <div id="Update" class="tabcontent">
+            <h1>Phone List: Update a phone record</h1>
+            <form id="UpdatePhone">
+                <p>
+                    <label>Select phone: 
+                        <select name="selectPhone"><option value=""> --- </option></select>
+                    </label>
+                </p>
+                <p><label>IMEI: <input name="imei" readonly="readonly" /></label></p>
+                <p><label>Manufacturer: <input name="manufacturer" /></label></p>
+                <p><label>Model: <input name="model" /></label></p>
+                <p><button type="button" name="commit">Save Changes</button></p>
+            </form>
+        </div>
+
+        <div id="Delete" class="tabcontent">
+            <h1>Phone List: Delete a phone record</h1>
+            <form id="DeletePhone">
+                <p>
+                    <label>Select phone: 
+                        <select name="selectPhone"><option value=""> --- </option></select>
+                    </label>
+                </p>
+                <p><button type="button" name="commit">Delete</button></p>
+            </form>
+        </div>
+          
+        <script>
+            function openForm(evt, formName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(formName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+          
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+
+        <div class="menu">
+        <h2>Test Functions</h2>
+        <menu>
+            <li><button type="button" onclick="Phone.clearData()">Clear database</button></li>
+            <li><button type="button" onclick="Phone.createTestData()">Create test data</button></li>
+        </menu>
+        </div>
+    </body>
+</html>
